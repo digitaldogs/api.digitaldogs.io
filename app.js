@@ -24,4 +24,7 @@ app.get("/*", (req, res) => {
   res.sendFile(buildPath + "/index.html");
 });
 
-module.exports = app;
+const port = process.env.port || 3000;
+app.listen(port);
+
+//module.exports = app;
