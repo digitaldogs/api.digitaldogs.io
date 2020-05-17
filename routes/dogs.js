@@ -16,42 +16,51 @@ const contractAddress = settings.Ethereum.ContractAddress;
 
 const fs = require("fs");
 
-const pack_abi = [{
-  "name": "_pack",
-  "outputs": [
-    {
-      "name": "name",
-      "type": "string"
-    },
-    {
-      "name": "dob",
-      "type": "uint256"
-    },
-    {
-      "name": "microchip",
-      "type": "string"
-    },
-    {
-      "name": "dam",
-      "type": "uint256"
-    },
-    {
-      "name": "sire",
-      "type": "uint256"
-    },
-    {
-      "name": "sex",
-      "type": "uint8"
-    },
-    {
-      "name": "timestamp",
-      "type": "uint256"
-    }
-  ],
-  "payable": false,
-  "stateMutability": "view",
-  "type": "function"
-}]
+const pack_abi = [
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pack",
+    "outputs": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "dob",
+        "type": "uint256"
+      },
+      {
+        "name": "microchip",
+        "type": "string"
+      },
+      {
+        "name": "dam",
+        "type": "uint256"
+      },
+      {
+        "name": "sire",
+        "type": "uint256"
+      },
+      {
+        "name": "sex",
+        "type": "uint8"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
 
   // name: "_pack",
   // outputs: [
@@ -89,78 +98,51 @@ const pack_abi = [{
   // type: "function"
 
 
-const add_abi = [{
-  "name": "_pack",
-      "outputs": [
-        {
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "name": "dob",
-          "type": "uint256"
-        },
-        {
-          "name": "microchip",
-          "type": "string"
-        },
-        {
-          "name": "dam",
-          "type": "uint256"
-        },
-        {
-          "name": "sire",
-          "type": "uint256"
-        },
-        {
-          "name": "sex",
-          "type": "uint8"
-        },
-        {
-          "name": "timestamp",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-  // constant: false,
-  // inputs: [
-  //   {
-  //     name: "name",
-  //     type: "string"
-  //   },
-  //   {
-  //     name: "dob",
-  //     type: "uint256"
-  //   },
-  //   {
-  //     name: "microchip",
-  //     type: "string"
-  //   },
-  //   {
-  //     name: "sex",
-  //     type: "uint8"
-  //   },
-  //   {
-  //     name: "dam",
-  //     type: "uint256"
-  //   },
-  //   {
-  //     name: "sire",
-  //     type: "uint256"
-  //   },
-  //   {
-  //     name: "owner",
-  //     type: "address"
-  //   }
-  // ],
-  // name: "add",
-  // outputs: [],
-  // payable: true,
-  // stateMutability: "payable",
-  // type: "function"
-}];
+const add_abi = [
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pack",
+    "outputs": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "dob",
+        "type": "uint256"
+      },
+      {
+        "name": "microchip",
+        "type": "string"
+      },
+      {
+        "name": "dam",
+        "type": "uint256"
+      },
+      {
+        "name": "sire",
+        "type": "uint256"
+      },
+      {
+        "name": "sex",
+        "type": "uint8"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
 
 
 const tokenABI = [{
@@ -201,8 +183,8 @@ router.get("/pack", (req, res) => {
   const eth = new Eth(new Eth.HttpProvider("https://mainnet.infura.io/v3/eaf5e0b4a01042a48211762c8d4eec44"));
   const contract = eth.contract(pack_abi).at("0x4390282c7d623edee9aacb971303077aba2d5e14");
   
-  contract._pack().then((pack) => {
-    res.send(pack[0]);
+  contract.pack(0).then((pack) => {
+    res.send(pack);
   });
 });
 
