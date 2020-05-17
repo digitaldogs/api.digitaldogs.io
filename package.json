@@ -2,14 +2,14 @@
   "name": "src",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "start": "nodemon ./src/server/bin/www"
-  },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
+    "ethereumjs-wallet": "^0.6.3",
+    "ethjs": "^0.4.0",
+    "ethjs-signer": "^0.1.1",
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",

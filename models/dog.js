@@ -50,11 +50,13 @@ const add_abi = {
 
 const dog = id => {
   return new Promise((resolve, reject) => {
-    //https://mainnet.infura.io/v3/eaf5e0b4a01042a48211762c8d4eec44/'
+
+    const key = process.env.INFURA_KEY;
+
     //const eth = new Eth(new Eth.HttpProvider(node));
     const eth = new Eth(
       new Eth.HttpProvider(
-        "https://mainnet.infura.io/v3/eaf5e0b4a01042a48211762c8d4eec44"
+        "https://mainnet.infura.io/v3/" + key
       )
     );
     const contract = eth
@@ -65,11 +67,13 @@ const dog = id => {
   });
 };
 
-const count = () => {
-  return new Promise((resolve, reject) => {
-    const eth = new Eth(new Eth.HttpProvider(node));
-    const contract = eth.contract(dogContract.abi).at(contractAddress);
+const count = async () => {
+  const key = process.env.INFURA_KEY;
+  const eth = new Eth(new Eth.HttpProvider(node + key));
+  const contract = eth.contract(dogContract.abi).at(contractAddress);
+  const totalSupply = await contract.totalSupply();
 
-    resolve(contract.totalSupply());
-  });
+  return totalSupply;
 };
+
+module.exports = { count };
